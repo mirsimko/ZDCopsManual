@@ -1,12 +1,13 @@
 \section{How to use the ZDC code}\hypertarget{how-to-use-the-zdc-code}{}\label{how-to-use-the-zdc-code}
 
-All of the code is located in my folder: \texttt{/direct/star+u/msimko/ZDC}. You can copy the whole folder into
-your directory (I will be calling it the base folder in this text).
+All of the code is located in the folder: \texttt{/direct/star+u/msimko/ZDC}. You can copy the whole folder into
+your directory (We will be calling it the base folder in this text). Some of the code has
+a copy on Github as well \cite{ZdcGithubRepo}.
 
 \subsection{Getting the .dat files}\hypertarget{getting-the-dat-files}{}\label{getting-the-dat-files}
 
-First, you must download the .dat files which are quite big, therefore I recommend saving them on
-the \texttt{gpfs01} disc on RCF (\texttt{/gpfs/mnt/gpfs01/star/pwg}). For the data transfer, I use the script
+First, you must download the .dat files which are quite big, therefore We recommend saving them on
+the \texttt{gpfs01} disc on RCF (\texttt{/gpfs/mnt/gpfs01/star/pwg}). For the data transfer, We use the script
 \texttt{transfer.cpp} in\\
 \texttt{/direct/star+u/msimko/ZDC/data}.\\
 It uses Data Carousel so you won't put much
@@ -22,7 +23,7 @@ Importantly, you must also change the number of .dat files in the run. You can f
 
 Now, you have to wait until your data get transfered. This can take from a couple of minutes up to a few hours.
 You can monitor it here:
-\url{https://www.star.bnl.gov/devcgi/display\_accnt.cgi}.
+\url{https://www.star.bnl.gov/devcgi/display_accnt.cgi}~\cite{hpss}.
 When they get transfered, running
 \begin{verbatim}
 $ ./ls.sh

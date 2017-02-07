@@ -40,6 +40,8 @@
 
 \chapter{Run16 ZDC calibration\label{calibration}}
 
+
+
 The voltages were calculated according to the formula
 \begin{equation}
  G = aU^b
@@ -60,7 +62,7 @@ U_{\text{result}} = U_\text{current}\left(\frac{G_\text{desired}}{G}
 \frac{R_\text{desired}}{R}\right)^{1/4.2}
 \end{equation}
 where $G$ is the current position of the neutron peak, $G_\text{desired}$ is the desired position
-of the neutron peak (currently 60), $R_{desired}$ is the desired ratio between the gain of the ADC SUM
+of the neutron peak (currently 60), $R_\text{desired}$ is the desired ratio between the gain of the ADC SUM
 tower and the current tower, and $R$ is the current ratio.
 The resulting voltages are in Table \ref{uncorected}. The position of the single
 neutron peaks in this test
@@ -231,7 +233,11 @@ for the West towers were taken from table~\ref{thirdCalib}.}
 \begin{thebibliography}{9}
  \bibitem{ZDCvoltsDependence} Y.\ Zhu, \textit{ZDC Testing, Electronics Layout and Result Analysis}, 2010
  (cited February 7, 2017),
- \url{https://drupal.star.bnl.gov/STAR/system/files/ZDC_Document_20101005.pdf}
+ \url{https://drupal.star.bnl.gov/STAR/system/files/ZDC_Document_20101005.pdf}.
+ \bibitem{ZdcGithubRepo} M.\ Šimko et al., \textit{ZDC calibration Github repository}
+ (cited February 7, 2017), \url{https://github.com/mirsimko/ZdcCalibration}.
+ \bibitem{hpss} \textit{STAR HPSS account table} (cited February 7, 2017),
+ \url{https://www.star.bnl.gov/devcgi/display_accnt.cgi}.
 \end{thebibliography}
 
 \end{document}
