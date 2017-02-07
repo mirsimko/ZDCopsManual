@@ -1,0 +1,42 @@
+\chapter{Introduction}
+\section{Review}
+Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 1440, situated in the close proximity of the STAR detector, in the same place as supplies of other detectors. There are two power supplies (Fig.\ref{hvsupplies}). Currently, one of them seems to be unable to output voltage high enough. Generally, this power supply has maximum output of 5 kV, but on the cables connected to ZDC, there is a component, that limits maximum output to 3 kV. This is probably for the protection of PMTs.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/hvsupplies.jpg}
+\end{center}
+\caption{Power supplies, that are used for ZDC PMTs.}
+\label{hvsupplies}
+\end{figure}
+
+High voltage cables are not directly connected to PMTs, they are connected through patch panels (PP1 or PP2), Fig.~\ref{pp1} and Fig.~\ref{pp2}. Output from PMTs is as well connected to logic units using PP1 (for the west) or PP2 (for the east).
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/pp1.jpg}
+\end{center}
+\caption{Patch panel 1 for ZDC west.  ZDC cables are on the left, high voltage are red and output from PMTS are black.}
+\label{pp1}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/pp2.jpg}
+\end{center}
+\caption{Patch panel 2 for ZDC east high voltage (red cables) and output from PMTS (black cables).}
+\label{pp2}
+\end{figure}
+
+Power supply could be accessed via RS232 port. This is connected to BDB computer. On this computer, there are IOC (input-output controls) for several detectors. The one for ZDC could be accessed at \texttt{sc5.starp.bnl.gov} (SC5), the computer in control room.
+
+TCIM is a logic unit, directly connected to ZDC's PMTs output channels. It could be accessed from computers at STAR network.
+The power switch of TCIM is at \texttt{tof@tofrnps.starp.bnl.gov} (tofrpns = TOF remote network power switch).
+TCIM could be accessed from any computer in the STAR network.
+
+TTL output from TCIM is connected to another logic unit, situated in DAQ room at STAR. Rescalers, calculated with this unit could be accessed from SC5 computer.
+
+TDC (timing of the ZDC events) could be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM could be accessed via browser.
+
+\section{Other important connections}
+Alarm handers for slow control at STAR are at \texttt{alh2.starp.bnl.gov} (older ones at \texttt{alh.starp.bnl.gov}).
