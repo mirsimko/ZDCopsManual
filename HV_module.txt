@@ -1,0 +1,34 @@
+LeCroy
+crate: 1440
+
+module: 1444N
+
+mapping:
+-> means switching for run 2017
+left 1444N (slot 9):
+0E --
+1F E1 
+2G E3 
+3H W1 
+4I --
+5J W3 -> --
+6K -- 
+7L --
+
+right 1444N (slot 8): -> slot 7
+0E --
+1F --
+2G W2
+3H E2
+4I --
+5J -- -> W3
+6K MTD GEM3
+7L MTD GEM2
+
+ZDC SMD on LeCroy 1443NF
+slot 6:
+2G ZDC SMD EAST HV1 700V
+3H ZDC SMD EAST HV2 900V
+
+slot 5
+
