@@ -21,24 +21,34 @@
 \newcommand{\sigman}{\frac{\sigma^2}{N}}
 \newcommand{\jmenovatel}{ \arpxsq - \overline{X}^2}
 \usepackage{amsmath}
+
+
 %opening
 \title{ZDC Operator's Manual}
-\author{Miroslav Simko, Lukas Kramarik}
+\author{Miroslav Šimko, Lukáš Kramárik}
 \date{February 2017}
 
 \begin{document}
 
 \maketitle
 
-\chapter{ZDC calibration}
+\tableofcontents
+\chapter{Introduction}
+
+\chapter{High-voltage controls}
+
+\chapter{Running the ZDC calibration code}
+
+
+\chapter{Run16 ZDC calibration}
 
 The voltages were calculated according to the formula
-$$
-G = aU^b
-$$
+\begin{equation}
+ G = aU^b
+\end{equation}
+
 where $G$ is a gain and $U$ stands for voltage. The coefficients $a$ and $b$ are 
-extracted from the following document:\\
-\url{https://drupal.star.bnl.gov/STAR/system/files/ZDC_Document_20101005.pdf}\\
+extracted from \cite{ZDCvoltsDependence}
 and are equal to approximately
 \begin{equation}
 b=4.2\,, \qquad a=4.0\,.
@@ -84,7 +94,7 @@ West&2532&43.56&0.665&0.6&2667\\
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{CorrectedEast.pdf}
+\includegraphics[width=.8\textwidth]{img/CorrectedEast.pdf}
 \end{center}
 \caption{Single neutron peak for east towers. Resulting voltages from Table \ref{uncorected}.}
 \label{eastPlot}
@@ -92,7 +102,7 @@ West&2532&43.56&0.665&0.6&2667\\
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{CorrectedWest.pdf}
+\includegraphics[width=.8\textwidth]{img/CorrectedWest.pdf}
 \end{center}
 \caption{Single neutron peak for west towers. Resulting voltages from Table \ref{uncorected}.}
 \label{westPlot}
@@ -128,7 +138,7 @@ The resulting voltages in the next iteration are in table \ref{thirdCalib}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{neutronPeaksEastFinal.pdf}
+\includegraphics[width=.8\textwidth]{img/neutronPeaksEastFinal.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for east towers.
 Voltages were taken from table~\ref{corected}.}
@@ -137,7 +147,7 @@ Voltages were taken from table~\ref{corected}.}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{neutronPeaksWestFinal.pdf}
+\includegraphics[width=.8\textwidth]{img/neutronPeaksWestFinal.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for west towers.
 Voltages were taken from table~\ref{corected}.}
@@ -182,7 +192,7 @@ Which is close enough to the desired values.
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{oneMoreTestEast.pdf}
+\includegraphics[width=.8\textwidth]{img/oneMoreTestEast.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for east towers.
 Voltages were taken from table~\ref{thirdCalib}.}
@@ -191,7 +201,7 @@ Voltages were taken from table~\ref{thirdCalib}.}
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{oneMoreTestWest.pdf}
+\includegraphics[width=.8\textwidth]{img/oneMoreTestWest.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for west towers. 
 Voltages were taken from table~\ref{thirdCalib}.}
@@ -200,7 +210,7 @@ Voltages were taken from table~\ref{thirdCalib}.}
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{FinalTestEast.pdf}
+\includegraphics[width=.8\textwidth]{img/FinalTestEast.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for east towers in the final test. Voltages were
 for the East towers taken from table~\ref{corected}.}
@@ -209,10 +219,17 @@ for the East towers taken from table~\ref{corected}.}
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=.8\textwidth]{FinalTestWest.pdf}
+\includegraphics[width=.8\textwidth]{img/FinalTestWest.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for west towersin the final test. Voltages
 for the West towers were taken from table~\ref{thirdCalib}.}
 \label{finalTestWest}
 \end{figure}
+
+\begin{thebibliography}{9}
+ \bibitem{ZDCvoltsDependence} Y.\ Zhu, \textit{ZDC Testing, Electronics Layout and Result Analysis}, 2010
+ (cited February 7, 2017),
+ \url{https://drupal.star.bnl.gov/STAR/system/files/ZDC_Document_20101005.pdf}
+\end{thebibliography}
+
 \end{document}

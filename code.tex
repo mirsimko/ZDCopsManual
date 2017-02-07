@@ -1,0 +1,91 @@
+\section{How to use the ZDC code}\hypertarget{how-to-use-the-zdc-code}{}\label{how-to-use-the-zdc-code}
+
+All of the code is located in my folder: \texttt{/direct/star+u/msimko/ZDC}. You can copy the whole folder into
+your directory (I will be calling it the base folder in this text).
+
+\subsubsection{Getting the .dat files}\hypertarget{getting-the-dat-files}{}\label{getting-the-dat-files}
+
+First, you must download the .dat files which are quite big, therefore I recommend saving them on
+the \texttt{gpfs01} disc on RCF (\texttt{/gpfs/mnt/gpfs01/star/pwg}). For the data transfer, I use the script
+\texttt{transfer.cpp} in \texttt{/direct/star+u/msimko/ZDC/data}. It uses Data Carousel so you won't put much
+pressure on the HPSS (this is good practice). You run it by typing:
+\texttt{sh
+\$ root -q transfer.cpp
+}
+In this macro you have to change the variable
+\texttt{runNumber} and where you want to put the files (variables: \texttt{Energy}, \texttt{trgSetup}, and \texttt{Workdir}).
+Importantly, you must also change the number of .dat files in the run. You can find it here:
+\href{http://online.star.bnl.gov/RunLog/}{http://online.star.bnl.gov/RunLog/}
+
+Now, you have to wait until your data get transfered. This can take from a couple of minutes up to a few hours.
+You can monitor it here:
+\href{https://www.star.bnl.gov/devcgi/display\_accnt.cgi}{https://www.star.bnl.gov/devcgi/display\_accnt.cgi}. When they get transfered, running
+\texttt{sh
+\$ ./ls.sh
+}
+in the \texttt{data} folder will create a list of the transfered files.
+
+\subsubsection{Making the TTree}\hypertarget{making-the-ttree}{}\label{making-the-ttree}
+
+The analysis code is located in \texttt{StRoot} inside the base folder. First thing you need to do after you
+copy the code is compiling it using
+\texttt{sh
+\$ starver dev
+\$ cons
+}
+To run the code, first you have to change a few things in the \texttt{config.C} macro in the base folder. Basically all of the
+directories of the code and the data i.e. \texttt{dirOut}, \texttt{seenRuns}, and \texttt{fileName}. The \texttt{seenRuns} file has to
+exist so you want to create one (\texttt{\$ touch seenRuns/seenRuns\_run16.msimko.txt}). If you want to use the code
+on the same run multiple times (e.g.\ you screw up the first time), you have to delete the run number in
+this file. You don't have to worry
+about the rest.
+
+You can run the code by typing:
+\texttt{sh
+\$ starver dev
+\$ root4star -b -q ./read.C'("config.C")'
+}
+or you can simply use the macro prepared for this:
+\texttt{sh
+\$ ./read
+}
+This will run the BFC chain (it can take a few minutes so this is a good time to have a coffee). When it is finished
+in your \texttt{dirOut}, you will get lots of pdfs and pngs with histograms and ,most importantly, a root file in
+\texttt{dirOut/histo/someFileWithRunNumber.root}. Note that all of the histograms are also saved here.
+
+\subsubsection{ZDC calibration code}\hypertarget{zdc-calibration-code}{}\label{zdc-calibration-code}
+
+When a neutron hits the three towers of ZDC, the ratio of energy loss in the three towers should be 
+around 6:3:1, and the ADC readout value is proportional to the energy loss. So we need to check the ADC value 
+distribution of each tower and calculate the ratio between them.
+
+The TTree, you created in the previous step, stores the ADC readout value of ZDC modules, tof-multi, and
+TDC values (timing) as well. 
+So the next step of ZDC calibration
+should be to read the information and plot figures.
+We use some cuts in the code to extract the signal of the single neutron. In 2016, we used these cuts:
+
+\begin{itemize}
+\item TOF mult \textless{} 10
+\item ZDC ADC sum in the oposite tower \textless{} 100
+\item 200 \textless{} ZDC TDC (timing on both sides) \textless{} 2000
+\end{itemize}
+
+You can check the code in this repo in the files
+\texttt{zdcTree.C} and \texttt{zdcTree.h}. Change the \texttt{runNumber}, \texttt{trgSetup}, and \texttt{typeEnergy} variables in \texttt{zdcTree.C}, and
+the address of the input TFile in the file \texttt{zdcTree.h} (on lines 102 and 105). After this, you can run it by typing
+\texttt{sh
+\$ ./run.sh \$tofMultCut
+}
+The results should appear in the \texttt{dirOut/analysis/runNumber} folder. Now, you can fit the ZDC ADC distributions
+and get the single and double neutron peaks (SNP and DNP, respectively). After you get the SNP, you can calibrate
+the ZDC HV as described e.g.\ here \href{https://www.star.bnl.gov/protected/heavy/msimko/voltagesResult.pdf}{https://www.star.bnl.gov/protected/heavy/msimko/voltagesResult.pdf}.
+
+\subsubsection{Creating html page for monitoring}\hypertarget{creating-html-page-for-monitoring}{}\label{creating-html-page-for-monitoring}
+
+You can also create a web page out of the results. All you have to do is running
+\texttt{sh
+\$ root -l -q html\_maker.cpp
+}
+after you change variables \texttt{RunNumber}, \texttt{trgSetup}, \texttt{typeEnergy}, and \texttt{root\_file\_path} in the \texttt{html\_maker.cpp} file.
+
