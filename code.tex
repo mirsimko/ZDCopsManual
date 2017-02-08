@@ -19,7 +19,7 @@ In this macro you have to change the variable
 \texttt{runNumber} and where you want to put the files (variables: \texttt{Energy}, \texttt{trgSetup}, 
 and \texttt{Workdir}).
 Importantly, you must also change the number of .dat files in the run. You can find it here:
-\href{http://online.star.bnl.gov/RunLog/}{http://online.star.bnl.gov/RunLog/}
+\url{http://online.star.bnl.gov/RunLog/} \cite{runLogBrowser}.
 
 Now, you have to wait until your data get transfered. This can take from a couple of minutes up to a few hours.
 You can monitor it here:
@@ -62,9 +62,7 @@ in your \texttt{dirOut}, you will get lots of pdfs and pngs with histograms and 
 
 \subsection{ZDC calibration code}\hypertarget{zdc-calibration-code}{}\label{zdc-calibration-code}
 
-When a neutron hits the three towers of ZDC, the ratio of energy loss in the three towers should be 
-around 6:3:1, and the ADC readout value is proportional to the energy loss. So we need to check the ADC value 
-distribution of each tower and calculate the ratio between them.
+
 
 The TTree, you created in the previous step, stores the ADC readout value of ZDC modules, tof-multi, and
 TDC values (timing) as well. 
@@ -94,7 +92,7 @@ the ZDC HV as described e.g.\ in the chapter~\ref{calibration}.
 
 You can also create a web page out of the results. All you have to do is running
 \begin{verbatim}
-$ root -l -q html\_maker.cpp
+$ root -l -q html_maker.cpp
 \end{verbatim}
 after you change variables \texttt{RunNumber}, \texttt{trgSetup}, \texttt{typeEnergy}, 
 and \texttt{root\_file\_path} in the \texttt{html\_maker.cpp} file.

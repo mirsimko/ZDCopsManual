@@ -1,8 +1,26 @@
-The voltages were calculated according to the formula
+\section{ZDC calibration procedure}
+
+When a neutron emitted from a nucleus hits the three towers of the ZDC, the ratio of energy loss
+in the three towers should be 
+around 6:3:1, and the ADC readout value is proportional to the energy loss and the voltage on the
+photomultiplier tubes (PMT)\@. Therefore, we need to check the ADC value 
+distribution of each tower and calculate the ratio between them. Equally, we expect the ZDC 
+single-neutron peak (SNP) to
+be at the same ADC value in both, East and West side, when we look at the sum.
+
+Usually, the calibration is done iteratively. We have to take a dedicated ZDC run with
+$\sim$10$\,$M events (at full luminosity, this should take around $5\,$min). Then, we
+look at the resulting SNP via the procedure described in Chapter \ref{code}.
+The SNP should be at a safe ADC value so that the whole width of the SNP is in the ZDC measured
+range. Also, the ratio between the gain of the ZDC towers should be corrected. If the
+SNP is not in a safe position and/or the ratio between the towers' gain is wrong,
+the voltage in the photomultiplier tubes has to be adjusted and then the whole procedure
+has to be repeated.
+
+The gain on the PMTs follows a power law
 \begin{equation}
  G = aU^b
 \end{equation}
-
 where $G$ is a gain and $U$ stands for voltage. The coefficients $a$ and $b$ are 
 extracted from \cite{ZDCvoltsDependence}
 and are equal to approximately
@@ -10,9 +28,8 @@ and are equal to approximately
 b=4.2\,, \qquad a=4.0\,.
 \end{equation}
 
-We take into account that the desired position of the single neutron peak is at 60 ADC values
-and the desired ratio between the towers is 6:3:1. To calculate the desired voltages we use the
-formula
+We usually use the desired position of the single neutron peak as 60 ADC values. To calculate
+the desired voltages we use the formula
 \begin{equation}
 U_{\text{result}} = U_\text{current}\left(\frac{G_\text{desired}}{G} 
 \frac{R_\text{desired}}{R}\right)^{1/4.2}
@@ -20,7 +37,11 @@ U_{\text{result}} = U_\text{current}\left(\frac{G_\text{desired}}{G}
 where $G$ is the current position of the neutron peak, $G_\text{desired}$ is the desired position
 of the neutron peak (currently 60), $R_\text{desired}$ is the desired ratio between the gain of the ADC SUM
 tower and the current tower, and $R$ is the current ratio.
-The resulting voltages are in Table \ref{uncorected}. The position of the single
+
+\section{Run 16 ZDC calibration}
+For the run 2016, the desired ADC values of the SNP were set as 60 and the desired ratio between the
+towers was the usual 6:3:1. As described in the previous section, the SNP was analyzed
+and the resulting voltages were written in Table \ref{uncorected}. The position of the single
 neutron peaks in this test
 are shown in Figures \ref{eastPlot} and \ref{westPlot}.
 The ratios between the towers with the resulting voltages from the test
@@ -181,3 +202,5 @@ for the East towers taken from table~\ref{corected}.}
 for the West towers were taken from table~\ref{thirdCalib}.}
 \label{finalTestWest}
 \end{figure}
+
+Later, the ZDC gain should be monitored also. For run 16, see the monitoring page \cite{ZDCmonPage}.
