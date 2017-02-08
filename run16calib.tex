@@ -12,8 +12,8 @@ be at the same ADC value in both, East and West side, when we look at the sum.
 \begin{center}
 \includegraphics[width=.7\textwidth]{img/oneMoreTestEast.pdf}
 \end{center}
-\caption{Single neutron and double neutron peaks for east towers in Run16.}
-\label{oneMoreTestEast}
+\caption{\label{SNPillustration} Single neutron and double neutron peaks for east towers in Run16.}
+
 \end{figure}
 
 \begin{figure}[htb]
@@ -22,13 +22,15 @@ be at the same ADC value in both, East and West side, when we look at the sum.
 \includegraphics[width=.49\textwidth]{img/17038001_east_2}
 \includegraphics[width=.49\textwidth]{img/17038001_east_3}
 \end{center}
-\caption{Illustration of the gains of the individual towers in the ZDC gain analysis from Run16.}
-\label{oneMoreTestEast}
+\caption{\label{gain}Illustration of the gains of the individual towers in the ZDC gain analysis from Run16.}
+
 \end{figure}
 
 Usually, the calibration is done iteratively. We have to take a dedicated ZDC run with
 $\sim$10$\,$M events (at full luminosity, this should take around $5\,$min). Then, we
 look at the resulting SNP via the procedure described in Chapter \ref{code}.
+For an illustration of the SNP see Figure \ref{SNPillustration} and the gain of the single
+towers can be seen in Figure \ref{gain}.
 The SNP should be at a safe ADC value so that the whole width of the SNP is in the ZDC measured
 range. Also, the ratio between the gain of the ZDC towers should be corrected. If the
 SNP is not in a safe position and/or the ratio between the towers' gain is wrong,
