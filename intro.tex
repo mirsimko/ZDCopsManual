@@ -1,6 +1,8 @@
 \chapter{Introduction}
 
 \section{Review of ZDC electronics and cabling}
+
+\subsection{High-voltage power supply}
 Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 1440, situated in the close proximity of the STAR detector, in the same place as supplies of other detectors. There are two power supplies (Fig.\ref{hvsupplies}). Currently, one of them seems to be unable to output voltage high enough. Generally, these power supplies have maximum output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is probably for the protection of PMTs.
 
 \begin{figure}[htb]
@@ -11,7 +13,7 @@ Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 14
 \label{hvsupplies}
 \end{figure}
 
-High voltage cables are not directly connected to PMTs, they are connected through patch panels (PP1 for the west and PP2 for the east), Fig.~\ref{pp1} and Fig.~\ref{pp2}. Output from PMTs is as well connected to logic units using PP1 and PP2.
+High voltage cables are not directly connected to the PMTs, they are connected thrrough patch panels PP1 for the west and PP2 for the east (see Fig.~\ref{pp1} and Fig.~\ref{pp2}). Both of the patch pannels are located on the sides of the STAR infrastructer platform. Output from PMTs is connected to the logic units via PP1 and PP2 as well.
 
 \begin{figure}[htb]
 \begin{center}
@@ -29,9 +31,11 @@ High voltage cables are not directly connected to PMTs, they are connected throu
 \label{pp2}
 \end{figure}
 
-Power supplies could be accessed via RS232 port. This is connected to BDB computer. On this computer, there are IOC (input-output controls) for several detectors. The one for ZDC could be accessed at \texttt{sc5.starp.bnl.gov} (SC5), the computer in the STAR control room.
+Power supplies are accessed via an RS232 port that is connected to the, so called, BDB computer. On this computer, there are IOC (input/output controlers) for several detectors. The one for ZDC could be accessed from the \texttt{sc5.starp.bnl.gov} computer (SC5).
 
-Every PMT has its own output. All of them goes through PP1 or PP2 to another patch panels, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit (Fig.~\ref{lu_sum}).  Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, that is coincidence of the east and the west. All of these, together with signal from every PMT, are connected to TCIM.
+\subsection{Signal output}
+
+Each PMT has its own signal output. All of them go through PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, wwhich is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
 
 \begin{figure}[htb]
 \begin{center}
@@ -50,17 +54,19 @@ Every PMT has its own output. All of them goes through PP1 or PP2 to another pat
 \label{lu_sum}
 \end{figure}
 
-TCIM is another logic unit.  It could be accessed from any  computer at STAR network.
-The power switch of TCIM is at \texttt{tof@tofrnps} (tofrpns = TOF remote network power switch).
-Using TCIM, ZDC signal could be controlled. Here, the "ZDC kill" signal is connected as well. This one attenuates (kill) everything going from ZDC in preset time intervals.
+The TCIM is another logic unit.  It can be accessed from any  computer within the STAR network
+from a browser on the wesite /url{172.16.15.101/AnalogandCoincidenceLogic13.html}.
+The power switch of the TCIM is at \texttt{tof@tofrnps} (tofrpns = TOF remote network power switch).
+Using TCIM, ZDC signal could be controlled. Here, the ``ZDC kill'' signal is connected as well. This is a TTL signal that nullifies (kills) everything going from the ZDC in preset time intervals. The
+kill signal frequency can be changed from the TCIM website.
 
 TTL output from TCIM is connected to another logic unit, situated in DAQ room at STAR. Rescalers, calculated with this unit, could be accessed from SC5 computer.
 
-TDC (timing of the ZDC events) could be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM could be accessed via browser.
+TDC (timing of the ZDC events) could be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
 
-\section{List of important hosts to control ZDC electronics}
+\section{List of important computers that control the ZDC electronics}
 
-To gain access all of the important detector control hosts, one needs to add request at \texttt{https://www.star.bnl.gov/starkeyw/}. All of the hosts, mentioned below, could be accessed from RCF using RSA public key of your computer.
+To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts, mentioned below, could be accessed from RCF using RSA public key of your computer.
 \begin{outline}
  \1 \texttt{stargw.starp.bnl.gov}, account name: STAR user name
   \2 STAR Gateways
@@ -78,13 +84,15 @@ To gain access all of the important detector control hosts, one needs to add req
    \2 accessible only from STAR Gateway
    \2 login password could be found in the "password sheet" for shift leaders
    \2 operation of the power switch for TCIM
+ \1 \url{172.16.15.101/AnalogandCoincidenceLogic13.html}
+   \2 Webpage with the TCIM coincidence logic.
 \end{outline}
  
 \section{Hardware verification before collisions}
 Outputs from PMTs need to be checked before the run. These checkouts are made at the patch panels and at TCIM. Cables could 
 At patch panels, ZDCE1/2/3 (Fig.~\ref{zdcepatch}) and ZDCW1/2/3 channels are checked. Cables are unplugged from the front side and oscilloscope could be plugged in, in order to find PMT signal.
 
-ZDC west and east sum signals are checked on outputs of both TCIM and logic unit. "ZDC and" and "ZDC kill" signals are controlled on TCIM using  signal from pulser.
+ZDC west and east sum signals are checked on outputs of both TCIM and logic unit. ``ZDC and'' and ``ZDC kill'' signals are controlled on TCIM using  signal from pulser.
 
 \begin{figure}[htb]
 \begin{center}
