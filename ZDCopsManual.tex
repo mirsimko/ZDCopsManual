@@ -3,13 +3,13 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{breakurl}
-\usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage[breaklinks, hidelinks]{hyperref}
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{outlines}
+\usepackage{siunitx}
 
 \newcommand{\vect}[1]{\ensuremath{\boldsymbol{#1}}}
 \newcommand{\ddd}{\ensuremath{\,\mathrm{d}}}
@@ -26,12 +26,31 @@
 
 %opening
 \title{ZDC Operator's Manual}
-\author{Miroslav Šimko, Lukáš Kramárik}
+\author{\textbf{Lukáš Kramárik}\\
+Czech Technical University in Prague,\\[.5cm] 
+\textbf{Miroslav Šimko}\\[.4cm]
+Nuclear Physics Institute of the Czech Academy of Sciences}
 \date{February 2017}
 
 \begin{document}
 
-\maketitle
+\makeatletter
+\begin{titlepage}
+\begin{center}
+{\huge \bfseries  \@title }\\[2cm]
+{\LARGE  \@author}\\[4ex] 
+{\large \@date}\\[50ex]
+\includegraphics[width=2cm]{img/logo_rez}\hspace*{3cm}~%
+\includegraphics[width=4.4cm]{img/lev}
+\end{center}
+\end{titlepage}
+\makeatother
+\thispagestyle{empty}
+\newpage
+
+%Add content for page two here (useful for two-sided printing)
+\thispagestyle{empty}
+\newpage
 
 \tableofcontents
 \input{intro.tex}
@@ -39,10 +58,10 @@
 \chapter{High-voltage controls}
 
 
-\chapter{Run16 ZDC calibration\label{calibration}}
+\chapter{ZDC calibration\label{calibration}}
 \input{run16calib}
 
-\chapter{Running the ZDC calibration code}
+\chapter{Running the ZDC calibration code\label{code}}
 \input{code.tex}
 
 \input{bibliography}
