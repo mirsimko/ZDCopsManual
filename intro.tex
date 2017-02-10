@@ -1,6 +1,8 @@
 \chapter{Introduction}
 
 \section{Review of ZDC electronics and cabling}
+\subsection{ZDC Photomultipiers}
+tbd
 
 \subsection{High-voltage power supply}
 Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 1440, situated in the close proximity of the STAR detector, in the same place as supplies of other detectors. There are two power supplies (Fig.\ref{hvsupplies}). Currently, one of them seems to be unable to output voltage high enough. Generally, these power supplies have maximum output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is probably for the protection of PMTs.
@@ -90,8 +92,8 @@ To gain access all of the important detector control hosts, one needs to add req
 \end{outline}
  
 \section{Tests of the hardware before the start of the collisions at RHIC}
-The PMTs' response to cosmics needs to be checked before the run. After you turn the ZDC HV on, you can check the signal with an oscilloscope on the signal output at the patch panels close to the TCIM (See Fig. \ref{tcimpp}). A good way of doing this is to turn on the the HV on the towers one-by-one so you can see if the output of some ZDC towers is swapped.
-Moreover, the ZDC cables may be swapped with the SMD, disconnected, or faulty. Therefore, if the signal is missing on the patch panel,　you should follow the cables to the PMTs and check if all the cables are in the right place. Equally, you should check the HV connection.
+The PMTs' response to cosmics needs to be checked before the run. After you turn the ZDC HV on, you can check the signal with an oscilloscope on the signal output at the patch panels close to the TCIM (See Fig.\ \ref{tcimpp}). A good way of doing this is to turn on the the HV on the towers one-by-one so you can see if the output of some ZDC towers is swapped.
+Moreover, the ZDC cables may be swapped with the SMD, disconnected, or faulty. Therefore, if the signal is missing on the patch panel, you should follow the cables to the PMTs and check if all the cables are in the right place. Equally, you should check the HV connection.
 
 \begin{figure}[htb]
 \begin{center}
@@ -101,4 +103,4 @@ Moreover, the ZDC cables may be swapped with the SMD, disconnected, or faulty. T
 \label{zdcepatch}
 \end{figure}
 
-ZDC west and east sum signals are typically checked on outputs of both TCIM and logic unit. ``ZDC and'' and ``ZDC kill'' signals are controlled on TCIM using  signal from a pulser. A pulser needs to be connected to one of the channels of ZDC East and West simultaneously. Typically, you divide the signal from the pulser and connect it to the ZDC East1 and West1 towers input of the TCIM. Now, you should monitor the RICH scalers output GUI on the \textt{sc5} computer and the TCIM coincidence logic webpage at \url{172.16.15.101/AnalogandCoincidenceLogic13.html}.
+ZDC west and east sum signals are typically checked on outputs of both TCIM and logic unit. ``ZDC and'' and ``ZDC kill'' signals are controlled on TCIM using  signal from a pulser. The pulser needs to be connected to one of the channels of ZDC East and West simultaneously. Typically, you divide the signal from the pulser and connect it to the ZDC East1 and West1 towers input of the TCIM. Now, you should monitor the RICH scalers output GUI on the \texttt{sc5} computer and the TCIM coincidence logic webpage at \url{172.16.15.101/AnalogandCoincidenceLogic13.html}.
