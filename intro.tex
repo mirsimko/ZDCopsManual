@@ -92,19 +92,22 @@ To gain access all of the important detector control hosts, one needs to add req
    \2 Webpage with the TCIM coincidence logic (it is bookmarked e.g.\ in Firefox on \texttt{startrg.starp.bnl.gov}).
  \1 \texttt{telnet scserv 9010}: 
    \2 accessible  from \texttt{sc5.starp.bnl.gov}
+   \2 Can be used for communication with the LeCroy 1440 crate (ZDC HV power supply)
    \2 BDB computer
-   \2 to restart IOC: \texttt{Ctrl + X}
+   \2 to restart IOC: \texttt{Ctrl + X} \textbf{(Make sure the VPD is \textitt{OFF} first)}
    \2 to end telnet connection: \texttt{Ctrl + ]}, than \texttt{quit}
 \end{outline}
+
+
+
+
+\section{Power suplies control}
+Power supplies could be accessed and controlled using graphical windows, that could be opened at SC5 computer. T
 
 \subsection{Notes}
 Scalable fonts are needed to be installed on your computer, in order to open graphical applications at remote hosts.
 These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: \texttt{sudo apt-get install xfonts-100dpi}
  
-
-
-\section{Power suplies control}
-Power supplies could be accessed and controlled using graphical windows, that could be opened at SC5 computer. T
 
 \begin{figure}[htb]
   \begin{center}
