@@ -67,15 +67,15 @@ TTL output from TCIM is connected to another logic unit, situated in DAQ room at
 
 TDC (timing of the ZDC events) could be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
 
-\section{List of important computers that control the ZDC electronics}
+\section{List of important computers and commands that control the ZDC electronics}
 
-To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts, mentioned below, could be accessed from RCF using RSA public key of your computer.
+To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts listed below, could be accessed from RCF using RSA public key of your computer, if it is not described otherwise.
 \begin{outline}
  \1 \texttt{stargw.starp.bnl.gov}, account name: STAR user name
    \2 STAR Gateways
  \1 \texttt{sysuser@sc5.starp.bnl.gov} 
    \2 operation and control of the ZDC power supplies
-   \2 commands: \texttt{zdc}, \texttt{richscal}
+   \2 commands: \texttt{bbchv}, \texttt{zdc}, \texttt{richscal}
  \1 \texttt{staruser@startrg.starp.bnl.gov}
    \2 TDC timing of ZDC
  \1 \texttt{sysuser@alh.starp.bnl.gov} 
@@ -88,9 +88,54 @@ To gain access all of the important detector control hosts, one needs to add req
    \2 login password could be found in the "password sheet" for shift leaders
    \2 operation of the power switch for TCIM (especially useful when rebooting the TCIM)
  \1 \url{172.16.15.101/AnalogandCoincidenceLogic13.html}
+   \2 accessible from \texttt{startrg.starp.bnl.gov}
    \2 Webpage with the TCIM coincidence logic (it is bookmarked e.g.\ in Firefox on \texttt{startrg.starp.bnl.gov}).
+ \1 \texttt{telnet scserv 9010}: 
+   \2 accessible  from \texttt{sc5.starp.bnl.gov}
+   \2 BDB computer
+   \2 to restart IOC: \texttt{Ctrl + X}
+   \2 to end telnet connection: \texttt{Ctrl + ]}, than \texttt{quit}
 \end{outline}
+
+\subsection{Notes}
+Scalable fonts are needed to be installed on your computer, in order to open graphical applications at remote hosts.
+These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: \texttt{sudo apt-get install xfonts-100dpi}
  
+
+
+\section{Power suplies control}
+Power supplies could be accessed and controlled using graphical windows, that could be opened at SC5 computer. T
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=1.\textwidth]{img/bbchv.png}
+  \end{center}
+  \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{bbchv} command at SC5 computer.}
+\label{bbchv}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{img/zdc.png}
+  \end{center}
+  \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{zdc} command at SC5 computer.}
+\label{zdcwindow}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{img/richscal.png}
+  \end{center}
+  \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{richscal} command at SC5 computer.}
+\label{richscal}
+\end{figure}
+
+
+
+
+
+
+
 \section{Tests of the hardware before the start of the collisions at RHIC}
 The PMTs' response to cosmics needs to be checked before the run. After you turn the ZDC HV on, you can check the signal with an oscilloscope on the signal output at the patch panels close to the TCIM (See Fig.\ \ref{tcimpp}). A good way of doing this is to turn on the the HV on the towers one-by-one so you can see if the output of some ZDC towers is swapped.
 Moreover, the ZDC cables may be swapped with the SMD, disconnected, or faulty. Therefore, if the signal is missing on the patch panel, you should follow the cables to the PMTs and check if all the cables are in the right place. Equally, you should check the HV connection.
