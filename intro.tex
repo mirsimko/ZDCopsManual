@@ -93,15 +93,12 @@ To gain access all of the important detector control hosts, one needs to add req
    \2 Webpage with the TCIM coincidence logic (it is bookmarked e.g.\ in Firefox on \texttt{startrg.starp.bnl.gov}).
  \1 \texttt{telnet scserv 9010}: 
    \2 accessible  from \texttt{sc5.starp.bnl.gov}
+   \2 Can be used for communication with the LeCroy 1440 crate (ZDC HV power supply)
    \2 BDB computer
    \2 to restart IOC: see section \ref{bdbreboot}
-   \2 to end telnet connection: \texttt{Ctrl + ]}, than \texttt{quit}
 \end{outline}
 
-\subsection{Notes}
-Scalable fonts are needed to be installed on your computer, in order to open graphical applications at remote hosts.
-These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: \texttt{sudo apt-get install xfonts-100dpi}
- 
+
 
 
 \section{Power suplies control}
@@ -109,6 +106,11 @@ Power supplies could be accessed and controlled using graphical windows, that co
 Window for BBC HV (Fig.~\ref{bbchv}) is opened with command \texttt{bbchv}. From this windows, other control windows could be accessed, showing actual performance of ZDC, SMD and VPD HV. AC trips could be controlled and cleared as well. Green dots on the right panel shows if the HV supply is fully on or off. Trips could be cleared only if HV is on. ZDC, upVPD and SMD could be turned on and off from here, with the buttons on the left side.
 
 Not all of the control buttons on the BBC HV window trigger opening of another graphical window or any direct response. However, they work as a command, which results in showing of some data in terminal at BDB computer.
+
+\subsection{Notes}
+Scalable fonts are needed to be installed on your computer, in order to open graphical applications at remote hosts.
+These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: \texttt{sudo apt-get install xfonts-100dpi}
+ 
 
 \begin{figure}[htb]
   \begin{center}
