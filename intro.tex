@@ -34,7 +34,7 @@ High voltage cables are not directly connected to the PMTs, they are connected t
 \label{pp2}
 \end{figure}
 
-Power supplies are accessed via an RS232 port that is connected to the, so called, BDB computer. On this computer, there are IOC (input/output controlers) for several detectors. The one for ZDC could be accessed from the \texttt{sc5.starp.bnl.gov} computer (SC5).
+Power supplies are accessed via an RS232 port that is connected to the, so called, BDB computer. On this computer, there are IOC (input/output controlers) for several detectors. The one for ZDC can be accessed from the \texttt{sc5.starp.bnl.gov} computer (SC5).
 
 \subsection{Signal output}
 
@@ -61,16 +61,16 @@ The TCIM is another logic unit.  It can be accessed from any  computer within th
 from a browser on the website\\ 
 \url{172.16.15.101/AnalogandCoincidenceLogic13.html}.\\
 The power switch of the TCIM is at \texttt{tof@tofrnps} (tofrpns = TOF remote network power switch).
-Using TCIM, ZDC signal could be controlled. Here, the ``ZDC kill'' signal is connected as well. This is a TTL signal that nullifies (kills) everything going from the ZDC in preset time intervals. The
+Using TCIM, ZDC signal can be controlled. Here, the ``ZDC kill'' signal is connected as well. This is a TTL signal that nullifies (kills) everything going from the ZDC in preset time intervals. The
 kill signal frequency can be changed from the TCIM website.
 
-TTL output from TCIM is connected to another logic unit, situated in DAQ room at STAR. Rescalers, calculated with this unit, could be accessed from SC5 computer.
+TTL output from TCIM is connected to another logic unit, situated in DAQ room at STAR. Rescalers, calculated with this unit, can be accessed from SC5 computer.
 
-TDC (timing of the ZDC events) could be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
+TDC (timing of the ZDC events) can be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
 
 \section{List of important computers and commands that control the ZDC electronics}
 
-To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts listed below, could be accessed from RCF using RSA public key of your computer, if it is not described otherwise.
+To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts listed below, can be accessed from RCF using RSA public key of your computer, if it is not described otherwise.
 \begin{outline}
  \1 \texttt{stargw.starp.bnl.gov}, account name: STAR user name
    \2 STAR Gateways
@@ -86,7 +86,7 @@ To gain access all of the important detector control hosts, one needs to add req
  \1 \texttt{tof@tofrnps}
    \2 TOF remote network power switch
    \2 accessible only from STAR Gateway
-   \2 login password could be found in the "password sheet" for shift leaders
+   \2 login password can be found in the "password sheet" for shift leaders
    \2 operation of the power switch for TCIM (especially useful when rebooting the TCIM)
  \1 \url{172.16.15.101/AnalogandCoincidenceLogic13.html}
    \2 accessible from \texttt{startrg.starp.bnl.gov}
@@ -95,14 +95,13 @@ To gain access all of the important detector control hosts, one needs to add req
    \2 accessible  from \texttt{sc5.starp.bnl.gov}
    \2 Can be used for communication with the LeCroy 1440 crate (ZDC HV power supply)
    \2 BDB computer
-   \2 to restart IOC: \texttt{Ctrl + X} \textbf{(Make sure the VPD is \textit{OFF} first)}
-   \2 to end telnet connection: \texttt{Ctrl + ]}, than \texttt{quit}
+   \2 to restart the ZDC IOC on BDB, see section \ref{bdbreboot}.
 \end{outline}
 
 
 \section{Power suplies control}
-Power supplies could be accessed and controlled using graphical windows, that could be opened at SC5 computer. 
-Window for BBC HV (Fig.~\ref{bbchv}) is opened with command \texttt{bbchv}. From this windows, other control windows could be accessed, showing actual performance of ZDC, SMD and VPD HV. AC trips could be controlled and cleared as well. Green dots on the right panel shows if the HV supply is fully on or off. Trips could be cleared only if HV is on. ZDC, upVPD and SMD could be turned on and off from here, with the buttons on the left side.
+Power supplies can be accessed and controlled using graphical windows, that can be opened at SC5 computer. 
+Window for BBC HV (Fig.~\ref{bbchv}) is opened with command \texttt{bbchv}. From this windows, other control windows can be accessed, showing actual performance of ZDC, SMD and VPD HV. AC trips can be controlled and cleared as well. Green dots on the right panel shows if the HV supply is fully on or off. Trips can be cleared only if HV is on. ZDC, upVPD and SMD can be turned on and off from here, with the buttons on the left side.
 
 Not all of the control buttons on the BBC HV window trigger opening of another graphical window or any direct response. However, they work as a command, which results in showing of some data in terminal at BDB computer.
 
@@ -118,7 +117,7 @@ These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: 
 \label{bbchv}
 \end{figure}
 
-More detailed ZDC HV control window (Fig.~\ref{zdcwindow}) could be opened either by clicking on the button with window icon, next to the title "ZDC" in the left panel of BBC HV control window, or by typing \texttt{zdc} command in terminal at SC5 computer. Set values of HV on all of the PMTs and their readback values are shown in this window.  ZDC could be turned on and off also from here.
+More detailed ZDC HV control window (Fig.~\ref{zdcwindow}) can be opened either by clicking on the button with window icon, next to the title "ZDC" in the left panel of BBC HV control window, or by typing \texttt{zdc} command in terminal at SC5 computer. Set values of HV on all of the PMTs and their readback values are shown in this window.  ZDC can be turned on and off also from here.
 
 \begin{figure}[htb]
   \begin{center}
@@ -128,7 +127,7 @@ More detailed ZDC HV control window (Fig.~\ref{zdcwindow}) could be opened eithe
 \label{zdcwindow}
 \end{figure}
 
-Values of RICH Scaler Rates for BBC and ZDC detectors could be displayed with \texttt{richscal} command at SC5 computer. "ZDC-nokill" is the event rate without "ZDC-kill" signal. As it was already mentioned, "ZDC And" is the rate of ZDC east and ZDC west coincidence.
+Values of RICH Scaler Rates for BBC and ZDC detectors can be displayed with \texttt{richscal} command at SC5 computer. "ZDC-nokill" is the event rate without "ZDC-kill" signal. As it was already mentioned, "ZDC And" is the rate of ZDC east and ZDC west coincidence.
 
 \begin{figure}[htb]
   \begin{center}
