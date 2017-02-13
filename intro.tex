@@ -2,10 +2,11 @@
 
 \section{Review of ZDC electronics and cabling}
 \subsection{ZDC Photomultipiers}
-tbd
+Currently, installed photomultiplier assembly (photomultiplier tube, voltage-divider circuit and other components, all integrated into a single case) is Hamamatsu H2431-50, having by default photomultiplier tube (PMT) Hamamatsu R2083 \cite{PMTtube} (that differs from the one in the ZDC design report \cite{ZDCdocumentation}).
 
 \subsection{High-voltage power supply}
-Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 1440, situated in the close proximity of the STAR detector, in the same place as supplies of other detectors. There are two power supplies (Fig.\ref{hvsupplies}). Currently, one of them seems to be unable to output voltage high enough. Generally, these power supplies have maximum output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is probably for the protection of PMTs.
+Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 1440, situated in the close proximity of the STAR detector, in the same place as supplies of other detectors, on the STAR
+infrastructer platform. There are two power supplies (Fig.\ref{hvsupplies}). Currently, one of them seems to be unable to output voltage high enough. Generally, these power supplies have maximum output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is probably for the protection of PMTs.
 
 \begin{figure}[htb]
 \begin{center}
@@ -37,7 +38,7 @@ Power supplies are accessed via an RS232 port that is connected to the, so calle
 
 \subsection{Signal output}
 
-Each PMT has its own signal output. All of them go through PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, wwhich is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
+Each PMT has its own signal output. All of them go through PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, which is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
 
 \begin{figure}[htb]
 \begin{center}
@@ -93,7 +94,7 @@ To gain access all of the important detector control hosts, one needs to add req
  \1 \texttt{telnet scserv 9010}: 
    \2 accessible  from \texttt{sc5.starp.bnl.gov}
    \2 BDB computer
-   \2 to restart IOC: \texttt{Ctrl + X}
+   \2 to restart IOC: see section \ref{bdbreboot}
    \2 to end telnet connection: \texttt{Ctrl + ]}, than \texttt{quit}
 \end{outline}
 
@@ -104,7 +105,10 @@ These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: 
 
 
 \section{Power suplies control}
-Power supplies could be accessed and controlled using graphical windows, that could be opened at SC5 computer. T
+Power supplies could be accessed and controlled using graphical windows, that could be opened at SC5 computer. 
+Window for BBC HV (Fig.~\ref{bbchv}) is opened with command \texttt{bbchv}. From this windows, other control windows could be accessed, showing actual performance of ZDC, SMD and VPD HV. AC trips could be controlled and cleared as well. Green dots on the right panel shows if the HV supply is fully on or off. Trips could be cleared only if HV is on. ZDC, upVPD and SMD could be turned on and off from here, with the buttons on the left side.
+
+Not all of the control buttons on the BBC HV window trigger opening of another graphical window or any direct response. However, they work as a command, which results in showing of some data in terminal at BDB computer.
 
 \begin{figure}[htb]
   \begin{center}
@@ -114,6 +118,8 @@ Power supplies could be accessed and controlled using graphical windows, that co
 \label{bbchv}
 \end{figure}
 
+More detailed ZDC HV control window (Fig.~\ref{zdcwindow}) could be opened either by clicking on the button with window icon, next to the title "ZDC" in the left panel of BBC HV control window, or by typing \texttt{zdc} command in terminal at SC5 computer. Set values of HV on all of the PMTs and their readback values are shown in this window.  ZDC could be turned on and off also from here.
+
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[width=.6\textwidth]{img/zdc.png}
@@ -121,6 +127,8 @@ Power supplies could be accessed and controlled using graphical windows, that co
   \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{zdc} command at SC5 computer.}
 \label{zdcwindow}
 \end{figure}
+
+Values of RICH Scaler Rates for BBC and ZDC detectors could be displayed with \texttt{richscal} command at SC5 computer. "ZDC-nokill" is the event rate without "ZDC-kill" signal. As it was already mentioned, "ZDC And" is the rate of ZDC east and ZDC west coincidence.
 
 \begin{figure}[htb]
   \begin{center}
@@ -130,11 +138,38 @@ Power supplies could be accessed and controlled using graphical windows, that co
 \label{richscal}
 \end{figure}
 
+% \newpage
+\subsection{Instructions for BDB reboot}
+\label{bdbreboot}
 
+\begin{enumerate}
+\item Connect or go to \texttt{sc5.starp.bnl.gov} computer.
+\item In a termnial, type \texttt{telnet scserv 9010}, and hit \texttt{[Enter]}.
+\item Hit  \texttt{[Enter]} again.
+\item If upVPD is on, turn it off.
+\item Press \texttt{Ctrl + X} to reboot the processor.
+\item Wait until the processors reboot information comes to the following lines:
+\noindent
+\begin{verbatim}
+ Done executing startup script
+ /home/sysuser/epics3.13.10/Application/iocBoot/iocbbc/stold.cmd
+ bdb> checking system
+\end{verbatim}
 
+\begin{itemize}
+ \item Please note that sometimes you might need to scroll up in case you missed this line appearing in the display.
+ \item During the process the following GUIs will go white: upVPD, BBC LeCroy and ZDC. Ignore any messages you see on the Linux screens afterwards. If a GUI remains blank but the reset is complete, try to maximize and restore the GUI to their original size.
+\end{itemize}
 
+\item When the terminal is done updating and all GUIs are back, \textbf{turn on what needs to be on}: BBC HV, ZDC HV, EAST/WEST SMD and PP2PP HV. \textbf{Check the required detector state for the current conditions.}
+\item Press \texttt{Ctrl + ]}. This should bring the prompt to \texttt{telnet>}.
+\item Type \texttt{quit} and hit \texttt{[Enter]}.
+\item Make an entry in the shift log when done.
+\end{enumerate}
 
+These instructions are (and should be) also placed in the STAR control room.
 
+ 
 
 \section{Tests of the hardware before the start of the collisions at RHIC}
 The PMTs' response to cosmics needs to be checked before the run. After you turn the ZDC HV on, you can check the signal with an oscilloscope on the signal output at the patch panels close to the TCIM (See Fig.\ \ref{tcimpp}). A good way of doing this is to turn on the the HV on the towers one-by-one so you can see if the output of some ZDC towers is swapped.
