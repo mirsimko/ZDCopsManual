@@ -8,9 +8,9 @@ distribution of each tower and calculate the ratio between them. Equally, we exp
 single-neutron peak (SNP) to
 be at the same ADC value in both, East and West side, when we look at the sum.
 
-\begin{figure}[!htb]
+\begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/oneMoreTestEast.pdf}
+\includegraphics[width=.65\textwidth]{img/oneMoreTestEast.pdf}
 \end{center}
 \caption{\label{SNPillustration} Single neutron and double neutron peaks for east towers in Run16.}
 
@@ -59,16 +59,8 @@ of the neutron peak (currently 60), $R_\text{desired}$ is the desired ratio betw
 tower and the current tower, and $R$ is the current ratio.
 
 \section{Run 16 ZDC calibration}
-For the run 2016, the desired ADC values of the SNP were set as 60 and the desired ratio between the
-towers was the usual 6:3:1. As described in the previous section, the SNP was analyzed
-and the resulting voltages were written in~Table~\ref{uncorected}. The position of the single
-neutron peaks in this test
-are shown in Figures \ref{eastPlot} and \ref{westPlot}.
-The ratios between the towers with the resulting voltages from the test
-are shown in Table \ref{corected}.
-Subsequently, new high-voltage values are also calculated.
 
-\begin{table}[htb] 
+\begin{table}[t] 
 \caption{Calculated voltages from the position of the single neutron peak and ratios 
 between ZDC towers}
 \label{uncorected}
@@ -89,23 +81,33 @@ West&2532&43.56&0.665&0.6&2667\\
 \end{center}
 \end{table}
 
-\begin{figure}[htb]
+For the run 2016, the desired ADC values of the SNP were set as 60 and the desired ratio between the
+towers was the usual 6:3:1. As described in the previous section, the SNP was analyzed
+and the resulting voltages were written in~Table~\ref{uncorected}. The position of the single
+neutron peaks in this test
+are shown in Figures \ref{eastPlot} and \ref{westPlot}.
+The ratios between the towers with the resulting voltages from the test
+are shown in Table \ref{corected}.
+Subsequently, new high-voltage values are also calculated.
+
+
+\begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/CorrectedEast.pdf}
+\includegraphics[width=.65\textwidth]{img/CorrectedEast.pdf}
 \end{center}
 \caption{Single neutron peak for east towers. Resulting voltages from Table \ref{uncorected}.}
 \label{eastPlot}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/CorrectedWest.pdf}
+\includegraphics[width=.65\textwidth]{img/CorrectedWest.pdf}
 \end{center}
 \caption{Single neutron peak for west towers. Resulting voltages from Table \ref{uncorected}.}
 \label{westPlot}
 \end{figure}
 
-\begin{table}[htb] 
+\begin{table}[!htb] 
 \caption{Calculated voltages from the test with corrected high voltages.
 The value 50 was set as the deseired position of the single neutron peak}
 \label{corected}
@@ -135,7 +137,7 @@ The resulting voltages in the next iteration are in Table \ref{thirdCalib}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/neutronPeaksEastFinal.pdf}
+\includegraphics[width=.65\textwidth]{img/neutronPeaksEastFinal.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for east towers.
 Voltages were taken from table~\ref{corected}.}
@@ -144,7 +146,7 @@ Voltages were taken from table~\ref{corected}.}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/neutronPeaksWestFinal.pdf}
+\includegraphics[width=.65\textwidth]{img/neutronPeaksWestFinal.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for west towers.
 Voltages were taken from table~\ref{corected}.}
@@ -189,7 +191,7 @@ Which is close enough to the desired values.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/oneMoreTestEast.pdf}
+\includegraphics[width=.65\textwidth]{img/oneMoreTestEast.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for east towers.
 Voltages were taken from table~\ref{thirdCalib}.}
@@ -198,7 +200,7 @@ Voltages were taken from table~\ref{thirdCalib}.}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/oneMoreTestWest.pdf}
+\includegraphics[width=.65\textwidth]{img/oneMoreTestWest.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for west towers. 
 Voltages were taken from table~\ref{thirdCalib}.}
@@ -207,7 +209,7 @@ Voltages were taken from table~\ref{thirdCalib}.}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/FinalTestEast.pdf}
+\includegraphics[width=.65\textwidth]{img/FinalTestEast.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for east towers in the final test. Voltages were
 for the East towers taken from table~\ref{corected}.}
@@ -216,7 +218,7 @@ for the East towers taken from table~\ref{corected}.}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.7\textwidth]{img/FinalTestWest.pdf}
+\includegraphics[width=.65\textwidth]{img/FinalTestWest.pdf}
 \end{center}
 \caption{Single neutron and double neutron peaks for west towersin the final test. Voltages
 for the West towers were taken from table~\ref{thirdCalib}.}

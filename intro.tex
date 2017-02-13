@@ -1,12 +1,11 @@
 \chapter{Introduction}
 
-\section{Review of ZDC electronics and cabling}
+\section{Review of Zero Degree Calorimeter (ZDC) electronics and cabling}
 \subsection{ZDC Photomultipiers}
-Currently, installed photomultiplier assembly (photomultiplier tube, voltage-divider circuit and other components, all integrated into a single case) is Hamamatsu H2431-50, having by default photomultiplier tube (PMT) Hamamatsu R2083 \cite{PMTtube} (that differs from the one in the ZDC design report \cite{ZDCdocumentation}).
+Currently, the installed photomultiplier assembly (photomultiplier tube, voltage-divider circuit and other components, all integrated into a single case) is Hamamatsu H2431-50~\cite{PMTtube}, currently using the default the photomultiplier tube (PMT) Hamamatsu R2083 (this differs from the ZDC design report \cite{ZDCdocumentation}).
 
 \subsection{High-voltage power supply}
-Photomultiplier tubes (PMT) at ZDC are connected to high voltage crate LeCroy 1440, situated in the close proximity of the STAR detector, in the same place as supplies of other detectors, on the STAR
-infrastructer platform. There are two power supplies (Fig.\ref{hvsupplies}). Currently, one of them seems to be unable to output voltage high enough. Generally, these power supplies have maximum output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is probably for the protection of PMTs.
+The ZDC PMTs are connected to the high-voltage (HV) crate LeCroy 1440, situated on the STAR support platform next the STAR detector--barrel. In the LeCroy crate, there are two power supply cards LeCroy 1444N that are connected to the low-voltage (LV) supply cards Lecroy 1441 (Fig.\ref{hvsupplies}). Generally, this assembly has a maximum HV output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is for the protection of the PMTs which have a maximum oprating voltage up to 3$\,$kV \cite{PMTtube}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -35,6 +34,13 @@ High voltage cables are not directly connected to the PMTs, they are connected t
 \end{figure}
 
 Power supplies are accessed via an RS232 port that is connected to the, so called, BDB computer. On this computer, there are IOC (input/output controlers) for several detectors. The one for ZDC can be accessed from the \texttt{sc5.starp.bnl.gov} computer (SC5).
+
+\subsubsection{HV power supply cable map}
+
+
+\subsubsection{Past HV power supply issues}
+In 2017, the channels did not ramp all the way to the desired values (see Table ???), but stayed on $\sim$2500 V\@. As was found out, the problematic part was an old LeCroy 1441 low-voltage power supply card in the front of the LeCroy crate which did not handle the power throughput. This issue was solved by connecting the HV channels with a demand voltage above $\sim$2600 V to another slot on a different
+LeCroy-1441 supply.
 
 \subsection{Signal output}
 
@@ -68,7 +74,7 @@ TTL output from TCIM is connected to another logic unit, situated in DAQ room at
 
 TDC (timing of the ZDC events) can be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
 
-\section{List of important computers and commands that control the ZDC electronics}
+\section{\label{computers}List of important computers and commands that control the ZDC electronics}
 
 To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts listed below, can be accessed from RCF using RSA public key of your computer, if it is not described otherwise.
 \begin{outline}
@@ -99,15 +105,12 @@ To gain access all of the important detector control hosts, one needs to add req
 \end{outline}
 
 
-\section{Power suplies control}
+\section{Power supplies control}
 Power supplies can be accessed and controlled using graphical windows, that can be opened at SC5 computer. 
 Window for BBC HV (Fig.~\ref{bbchv}) is opened with command \texttt{bbchv}. From this windows, other control windows can be accessed, showing actual performance of ZDC, SMD and VPD HV. AC trips can be controlled and cleared as well. Green dots on the right panel shows if the HV supply is fully on or off. Trips can be cleared only if HV is on. ZDC, upVPD and SMD can be turned on and off from here, with the buttons on the left side.
 
 Not all of the control buttons on the BBC HV window trigger opening of another graphical window or any direct response. However, they work as a command, which results in showing of some data in terminal at BDB computer.
 
-\subsection{Notes}
-Scalable fonts are needed to be installed on your computer, in order to open graphical applications at remote hosts.
-These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: \texttt{sudo apt-get install xfonts-100dpi}
  
 \begin{figure}[htb]
   \begin{center}
@@ -117,7 +120,7 @@ These are in package \texttt{xfonts-100dpi}, to install, just type in terminal: 
 \label{bbchv}
 \end{figure}
 
-More detailed ZDC HV control window (Fig.~\ref{zdcwindow}) can be opened either by clicking on the button with window icon, next to the title "ZDC" in the left panel of BBC HV control window, or by typing \texttt{zdc} command in terminal at SC5 computer. Set values of HV on all of the PMTs and their readback values are shown in this window.  ZDC can be turned on and off also from here.
+A detailed ZDC HV control window (Fig.~\ref{zdcwindow}) can be opened either by clicking on the button with window icon, next to the title "ZDC" in the left panel of BBC HV control window, or by typing \texttt{zdc} command in terminal at SC5 computer. Set values of HV on all of the PMTs and their readback values are shown in this window.  ZDC can be turned on and off also from here.
 
 \begin{figure}[htb]
   \begin{center}
@@ -138,7 +141,15 @@ Values of RICH Scaler Rates for BBC and ZDC detectors can be displayed with \tex
 \end{figure}
 
 % \newpage
-\subsection{Instructions for BDB reboot}
+
+\subsection{Notes}
+On some computers, when opening the Slow Controls windows (by Epics) they cause a Segmentation Violation and refuse to open. This issue is caused by the scalable fonts that need to be installed on your computer, in order to open graphical applications at remote hosts.
+You can solve this issue by installing the package \texttt{xfonts-100dpi}, to install it on e.g.\ Debian based systems, just type in the terminal on your computer:
+\begin{verbatim}
+$ sudo apt-get install xfonts-100dpi
+\end{verbatim}
+
+\subsection{Instructions for the BDB reboot}
 \label{bdbreboot}
 
 \begin{enumerate}
@@ -168,9 +179,25 @@ Values of RICH Scaler Rates for BBC and ZDC detectors can be displayed with \tex
 
 These instructions are (and should be) also placed in the STAR control room.
 
- 
+\subsection{Instructions for the TCIM reboot}
+Sometimes, the ZDC RICH scalers suddenly change to weird values (like 200k for the ``ZDC and''). This can be caused by a fault in logic on the TCIM board and can be solved by rebooting it.
+To do that, follow these steps:
 
-\section{Tests of the hardware before the start of the collisions at RHIC}
+
+\begin{enumerate}
+\item Type into a terminal somewhere in the STAR network (e.g.\ from the \texttt{stargw} -- see section~\ref{computers})
+\begin{verbatim}
+ssh tof@tofrnps
+\end{verbatim}
+\item you will be asked for a password (it is in the password sheet)
+\item enter
+\item \verb=/off B4, y=
+\item this turns off the TCIM. Wait 20--30 seconds
+\item \verb=/on B4, y=
+\item \verb=/x=
+\end{enumerate}
+
+\chapter{Tests of the hardware before the start of the collisions at RHIC}
 The PMTs' response to cosmics needs to be checked before the run. After you turn the ZDC HV on, you can check the signal with an oscilloscope on the signal output at the patch panels close to the TCIM (See Fig.\ \ref{tcimpp}). A good way of doing this is to turn on the the HV on the towers one-by-one so you can see if the output of some ZDC towers is swapped.
 Moreover, the ZDC cables may be swapped with the SMD, disconnected, or faulty. Therefore, if the signal is missing on the patch panel, you should follow the cables to the PMTs and check if all the cables are in the right place. Equally, you should check the HV connection.
 
