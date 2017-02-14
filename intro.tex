@@ -1,11 +1,8 @@
-\chapter{Introduction}
-
-\section{Review of Zero Degree Calorimeter (ZDC) electronics and cabling}
-\subsection{ZDC Photomultipiers}
+\chapter{Review of Zero Degree Calorimeter (ZDC) electronics and cabling}
+\section{ZDC Photomultipiers}
 Currently, the installed photomultiplier assembly (photomultiplier tube, voltage-divider circuit and other components, all integrated into a single case) is Hamamatsu H2431-50~\cite{PMTtube}, currently using the default the photomultiplier tube (PMT) Hamamatsu R2083 (this differs from the ZDC design report \cite{ZDCdocumentation}).
 
-\subsection{High-voltage power supply}
-The ZDC PMTs are connected to the high-voltage (HV) crate LeCroy 1440, situated on the STAR support platform next the STAR detector--barrel. In the LeCroy crate, there are two power supply cards LeCroy 1444N that are connected to the low-voltage (LV) supply cards Lecroy 1441 (Fig.\ref{hvsupplies}). Generally, this assembly has a maximum HV output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is for the protection of the PMTs which have a maximum oprating voltage up to 3$\,$kV \cite{PMTtube}.
+\section{High-voltage power supply}
 
 \begin{figure}[htb]
 \begin{center}
@@ -15,7 +12,7 @@ The ZDC PMTs are connected to the high-voltage (HV) crate LeCroy 1440, situated 
 \label{hvsupplies}
 \end{figure}
 
-High voltage cables are not directly connected to the PMTs, they are connected thrrough patch panels PP1 for the west and PP2 for the east (see Fig.~\ref{pp1} and Fig.~\ref{pp2}). Both of the patch pannels are located on the sides of the STAR infrastructer platform. Output from PMTs is connected to the logic units via PP1 and PP2 as well.
+The ZDC PMTs are connected to the high-voltage (HV) crate LeCroy 1440, situated on the STAR support platform next the STAR detector--barrel. In the LeCroy crate, there are two power supply cards LeCroy 1444N that are connected to the low-voltage (LV) supply cards Lecroy 1441 (Fig.\ref{hvsupplies}). Generally, this assembly has a maximum HV output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is for the protection of the PMTs which have a maximum oprating voltage up to 3$\,$kV \cite{PMTtube}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -33,16 +30,19 @@ High voltage cables are not directly connected to the PMTs, they are connected t
 \label{pp2}
 \end{figure}
 
+High voltage cables are not directly connected to the PMTs, they are connected thrrough patch panels PP1 for the west and PP2 for the east (see Fig.~\ref{pp1} and Fig.~\ref{pp2}). Both of the patch pannels are located on the sides of the STAR infrastructer platform. Output from PMTs is connected to the logic units via PP1 and PP2 as well.
+
 Power supplies are accessed via an RS232 port that is connected to the, so called, BDB computer. On this computer, there are IOC (input/output controlers) for several detectors. The one for ZDC can be accessed from the \texttt{sc5.starp.bnl.gov} computer (SC5).
 
-\subsubsection{HV power supply cable map}
+\subsection{HV power supply cable map}
+\input{HVtable}
 
 
-\subsubsection{Past HV power supply issues}
+\subsection{Past HV power supply issues}
 In 2017, the channels did not ramp all the way to the desired values (see Table ???), but stayed on $\sim$2500 V\@. As was found out, the problematic part was an old LeCroy 1441 low-voltage power supply card in the front of the LeCroy crate which did not handle the power throughput. This issue was solved by connecting the HV channels with a demand voltage above $\sim$2600 V to another slot on a different
 LeCroy-1441 supply.
 
-\subsection{Signal output}
+\section{Signal output}
 
 Each PMT has its own signal output. All of them go through PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, which is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
 
@@ -74,6 +74,7 @@ TTL output from TCIM is connected to another logic unit, situated in DAQ room at
 
 TDC (timing of the ZDC events) can be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
 
+\chapter{ZDC remote control}
 \section{\label{computers}List of important computers and commands that control the ZDC electronics}
 
 To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts listed below, can be accessed from RCF using RSA public key of your computer, if it is not described otherwise.

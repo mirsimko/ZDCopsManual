@@ -9,6 +9,7 @@
 \usepackage[breaklinks, hidelinks]{hyperref}
 \usepackage{url}
 \usepackage{booktabs}
+\usepackage{dcolumn}
 
 \newcommand{\vect}[1]{\ensuremath{\boldsymbol{#1}}}
 \newcommand{\ddd}{\ensuremath{\,\mathrm{d}}}
@@ -22,32 +23,12 @@
 \newcommand{\jmenovatel}{ \arpxsq - \overline{X}^2}
 \usepackage{amsmath}
 %opening
-\title{Final ZDC voltages for run16}
+\title{Final ZDC voltages for run16 and run17}
 \author{}
 \date{}
 
 \begin{document}
 \maketitle
 
-\begin{table}[htb] 
-\caption{Calculated voltages from the test with corrected high voltages.
-The value 50 was set as the deseired position of the single neutron peak}
-\label{corected}
-\begin{center}
-\begin{tabular}{lccccc}
- \toprule
- &$U_\text{current}$[V]&Single n pos.&gain ratio&desired gain ratio&$U_\text{result}$[V]\\
-\midrule
- East&2547&53.32&0.569&0.6&2540\\
-     &3159&53.32&0.330&0.3&3041\\
-     &2618&53.32&0.101&0.1&2575\\
-\midrule
-West  &2653  &64 &0.634 &0.6 &2558 \\
-      &2806  &64 &0.297 &0.3 &2748 \\
-      &3000  &64 &0.069 &0.1 &3196 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{table}
-
+\input{HVtable}
 \end{document}
