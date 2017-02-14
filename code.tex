@@ -4,7 +4,7 @@ All of the code is located in the folder: \texttt{/direct/star+u/msimko/ZDC}. Yo
 your directory (We will be calling it the base folder in this text). Some of the code has
 a copy on Github as well~\cite{ZdcGithubRepo}.
 
-\subsection{Getting the \verb=.dat=\ files}\hypertarget{getting-the-dat-files}{}\label{getting-the-dat-files}
+\subsection{Getting the \texttt{.dat}\ files}\hypertarget{getting-the-dat-files}{}\label{getting-the-dat-files}
 
 First, you must download the \verb=.dat=\ files which are quite big, therefore We recommend saving them on
 the \texttt{gpfs01} disc on RCF (\texttt{/gpfs/mnt/gpfs01/star/pwg}). For the data transfer, We use the script
@@ -42,7 +42,11 @@ To run the code, first you have to change a few things in the \texttt{config.C} 
 Basically all of the
 directories of the code and the data i.e. \texttt{dirOut}, \texttt{seenRuns}, and \texttt{fileName}. 
 The \texttt{seenRuns} file has to
-exist so you want to create one (\texttt{\$ touch seenRuns/seenRuns\_run16.msimko.txt}). If you want to use the code
+exist so you want to create one by typing:
+\begin{verbatim}
+$ touch seenRuns/seenRuns_run16.msimko.txt
+\end{verbatim}
+If you want to use the code
 on the same run multiple times (e.g.\ you screw up the first time), you have to delete the run number in
 this file. You don't have to worry
 about the rest.
@@ -95,5 +99,6 @@ You can also create a web page out of the results. All you have to do is running
 $ root -l -q html_maker.cpp
 \end{verbatim}
 after you change variables \texttt{RunNumber}, \texttt{trgSetup}, \texttt{typeEnergy}, 
-and \texttt{root\_file\_path} in the \texttt{html\_maker.cpp} file.
+and \texttt{root\_file\_path} in the\\
+\texttt{html\_maker.cpp} file.
 

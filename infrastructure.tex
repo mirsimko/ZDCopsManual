@@ -46,7 +46,7 @@ In 2017, the channels did not ramp all the way to the desired values (see Table~
 
 \section{Signal output}
 
-Each PMT has its own signal output. All of them go through PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, which is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
+Each PMT has its own signal output. All of them go through the patch pannels PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, which is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
 
 \begin{figure}[htb]
 \begin{center}
@@ -65,14 +65,12 @@ Each PMT has its own signal output. All of them go through PP1 or PP2 to their c
 \label{lu_sum}
 \end{figure}
 
-The TCIM is another logic unit.  It can be accessed from any  computer within the STAR network
-from a browser on the website\\ 
-\url{172.16.15.101/AnalogandCoincidenceLogic13.html}.\\
-The power switch of the TCIM is at \texttt{tof@tofrnps} (tofrpns = TOF remote network power switch).
-Using TCIM, ZDC signal can be controlled. Here, the ``ZDC kill'' signal is connected as well. This is a TTL signal that nullifies (kills) everything going from the ZDC in preset time intervals. The
-kill signal frequency can be changed from the TCIM website.
+The TCIM is another logic unit.  It can be monitored via a website on the address\\
+\url{172.16.15.101/AnalogandCoincidenceLogic13.html}\\
+from a browser on any computer within the STAR network (e.g.\ from \texttt{startrg.starp.bnl.gov} --- see Section~\ref{computers})\@. The power switch of the TCIM is at \texttt{tof@tofrnps} (tofrpns = TOF remote network power switch). Using TCIM, ZDC signal can be controlled. 
 
-TTL output from TCIM is connected to another logic unit, situated in DAQ room at STAR\@. Rescalers, calculated with this unit, can be accessed from SC5 computer.
+The ``ZDC kill'' signal is connected to the TCIM as well. This is a TTL signal that nullifies (kills) everything going from the ZDC in certain, preset, time intervals. The kill signal frequency can be changed from the TCIM website.
 
-TDC (timing of the ZDC events) can be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
+TTL output from the TCIM is connected to another logic unit, situated in the DAQ room at STAR\@. Rescalers, calculated with this unit, can be accessed from SC5 computer.
+TDC (timing of the ZDC events) can be set on \texttt{startrg.starp.bnl.gov} (see Chapter~\ref{timing}).
 
