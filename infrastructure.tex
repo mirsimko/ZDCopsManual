@@ -1,0 +1,78 @@
+\chapter{Review of Zero Degree Calorimeter (ZDC) electronics and cabling}
+\section{ZDC Photomultipiers}
+Currently, the installed photomultiplier assembly (photomultiplier tube, voltage-divider circuit and other components, all integrated into a single case) is Hamamatsu H2431-50~\cite{PMTtube}, currently using the default the photomultiplier tube (PMT) Hamamatsu R2083 (this differs from the ZDC design report \cite{ZDCdocumentation}).
+
+\section{High-voltage power supply}
+
+\begin{figure}[b]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/hvsupplies.jpg}
+\end{center}
+\caption{Power supplies, that are used for ZDC PMTs.}
+\label{hvsupplies}
+\end{figure}
+
+The ZDC PMTs are connected to the high-voltage (HV) crate LeCroy 1440, situated on the STAR support platform next the STAR detector--barrel. In the LeCroy crate, there are two power supply cards LeCroy 1444N that are connected to the low-voltage (LV) supply cards Lecroy 1441 (Fig.\ref{hvsupplies}). Generally, this assembly has a maximum HV output of 5 kV, but on the cables connected to PMTs, there is a component, that limits maximum output to 3 kV. This is for the protection of the PMTs which have a maximum oprating voltage up to 3$\,$kV \cite{PMTtube}.
+
+\begin{figure}[b]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/pp1.jpg}
+\end{center}
+\caption{Patch panel 1 for ZDC west.  ZDC cables are on the left, high voltage are red and output from PMTS are black.}
+\label{pp1}
+\end{figure}
+
+\begin{figure}[b]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/pp2.jpg}
+\end{center}
+\caption{Patch panel 2 for ZDC east high voltage (red cables) and output from PMTS (black cables).}
+\label{pp2}
+\end{figure}
+
+High voltage cables are not directly connected to the PMTs, they are connected thrrough patch panels PP1 for the west and PP2 for the east (see Fig.~\ref{pp1} and Fig.~\ref{pp2}). Both of the patch pannels are located on the sides of the STAR infrastructer platform. Output from PMTs is connected to the logic units via PP1 and PP2 as well.
+
+Power supplies are accessed via an RS232 port that is connected to the, so called, BDB computer. On this computer, there are IOC (input/output controlers) for several detectors. The one for ZDC can be accessed from the \texttt{sc5.starp.bnl.gov} computer (SC5).
+
+\subsection{HV power supply cable map}
+
+\input{HVtable} 
+%HV table is in a sepparate .tex file so that another pdf, containing only this table, can be easilly created
+
+The cable map in the LeCroy power supply is summarized in Table~\ref{HVtable}. In 2017, some cables on the power supply were swapped (see Section~\ref{HVissues}) so there is a cable map for the Run2016 and Run2017. The channels are represented as numbers on the HV slots (they are marked on the LeCroy 1444N), however letters are useed in the Slow controls program, so both representations are written in the table. The voltages were obtained in 2016 during a 200 GeV Au+Au run via a callibration procedure described in Chapter~\ref{calibration}.
+
+\subsection{Past HV power supply issues\label{HVissues}}
+In 2017, the channels did not ramp all the way to the desired values (see Table~\ref{HVtable}), but stayed on $\sim$2500 V\@. As was found out, the problematic part was an old LeCroy 1441 low-voltage dirrect-current (DC) power supply card in the front of the LeCroy crate which did not handle the power throughput. This issue was solved by connecting the HV channels with a demand voltage above $\sim$2600 V to another slot on a different LeCroy-1441 supply. Later, the faulty LeCroy 1441 DC power supply was replaced as the voltage on the remaining channels was unstable.
+
+\section{Signal output}
+
+Each PMT has its own signal output. All of them go through PP1 or PP2 to their counterparts, that are close to TCIM unit (Fig.~\ref{tcimpp}). Then, they are connected to logic unit in the, so called, NIM crate (Fig.~\ref{lu_sum}). Two of the outputs from this unit are sum signals, one for ZDC east and the other for ZDC west. Another output is "ZDC and" signal, which is the coincidence signal of the east and the west sums. All of these, together with signal from every PMT, are connected to TCIM.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/tcimpp.jpg}
+\end{center}
+\caption{TCIM and patch panel for the ZDC east.}
+\label{tcimpp}
+\end{figure}
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/lusum.jpg}
+\end{center}
+\caption{Logic unit for ZDC signal processing.}
+\label{lu_sum}
+\end{figure}
+
+The TCIM is another logic unit.  It can be accessed from any  computer within the STAR network
+from a browser on the website\\ 
+\url{172.16.15.101/AnalogandCoincidenceLogic13.html}.\\
+The power switch of the TCIM is at \texttt{tof@tofrnps} (tofrpns = TOF remote network power switch).
+Using TCIM, ZDC signal can be controlled. Here, the ``ZDC kill'' signal is connected as well. This is a TTL signal that nullifies (kills) everything going from the ZDC in preset time intervals. The
+kill signal frequency can be changed from the TCIM website.
+
+TTL output from TCIM is connected to another logic unit, situated in DAQ room at STAR\@. Rescalers, calculated with this unit, can be accessed from SC5 computer.
+
+TDC (timing of the ZDC events) can be set at \texttt{startrg.starp.bnl.gov}. At this computer, status and control of TCIM can be accessed via a browser.
+

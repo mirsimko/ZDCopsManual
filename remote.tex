@@ -1,0 +1,125 @@
+
+\chapter{ZDC remote control}
+\section{\label{computers}List of important computers and commands that control the ZDC electronics}
+
+To gain access all of the important detector control hosts, one needs to add request at \url{https://www.star.bnl.gov/starkeyw/}. All of the hosts listed below, can be accessed from RCF using RSA public key of your computer, if it is not described otherwise.
+\begin{outline}
+ \1 \texttt{stargw.starp.bnl.gov}, account name: STAR user name
+   \2 STAR Gateways
+ \1 \texttt{sysuser@sc5.starp.bnl.gov} 
+   \2 operation and control of the ZDC power supplies
+   \2 commands: \texttt{bbchv}, \texttt{zdc}, \texttt{richscal}
+ \1 \texttt{staruser@startrg.starp.bnl.gov}
+   \2 TDC timing of ZDC
+ \1 \texttt{sysuser@alh.starp.bnl.gov} 
+   \2 old alarm handler for slow controls at STAR
+ \1 \texttt{sysuser@alh2.starp.bnl.gov}
+   \2 new alarm handler for slow controls at STAR
+ \1 \texttt{tof@tofrnps}
+   \2 TOF remote network power switch
+   \2 accessible only from STAR Gateway
+   \2 login password can be found in the ``password sheet'' for shift leaders
+   \2 operation of the power switch for TCIM (especially useful when rebooting the TCIM)
+ \1 \url{172.16.15.101/AnalogandCoincidenceLogic13.html}
+   \2 accessible from \texttt{startrg.starp.bnl.gov}
+   \2 Webpage with the TCIM coincidence logic (it is bookmarked e.g.\ in Firefox on \texttt{startrg.starp.bnl.gov}).
+ \1 \texttt{telnet scserv 9010}: 
+   \2 accessible  from \texttt{sc5.starp.bnl.gov}
+   \2 Can be used for communication with the LeCroy 1440 crate (ZDC HV power supply)
+   \2 BDB computer
+   \2 to restart the ZDC IOC on BDB, see Section~\ref{bdbreboot}.
+\end{outline}
+
+
+\section{Power supplies control}
+Power supplies can be accessed and controlled using graphical windows, that can be opened at SC5 computer. 
+Window for BBC HV (Fig.~\ref{bbchv}) is opened with command \texttt{bbchv}. From this windows, other control windows can be accessed, showing actual performance of ZDC, SMD and VPD HV\@. AC trips can be controlled and cleared as well. Green dots on the right panel shows if the HV supply is fully on or off. Trips can be cleared only if HV is on. ZDC, upVPD and SMD can be turned on and off from here, with the buttons on the left side.
+
+Not all of the control buttons on the BBC HV window trigger opening of another graphical window or any direct response. However, they work as a command, which results in showing of some data in terminal at BDB computer.
+
+ 
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=1.\textwidth]{img/bbchv.png}
+  \end{center}
+  \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{bbchv} command at SC5 computer.}
+\label{bbchv}
+\end{figure}
+
+A detailed ZDC HV control window (Fig.~\ref{zdcwindow}) can be opened either by clicking on the button with window icon, next to the title ``ZDC'' in the left panel of BBC HV control window, or by typing \texttt{zdc} command in terminal at SC5 computer. Set values of HV on all of the PMTs and their readback values are shown in this window.  ZDC can be turned on and off also from here.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{img/zdc.png}
+  \end{center}
+  \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{zdc} command at SC5 computer.}
+\label{zdcwindow}
+\end{figure}
+
+Values of RICH Scaler Rates for BBC and ZDC detectors can be displayed with \texttt{richscal} command at SC5 computer. ``ZDC-nokill'' is the event rate without ``ZDC-kill'' signal. As it was already mentioned, ``ZDC And'' is the rate of ZDC east and ZDC west coincidence.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{img/richscal.png}
+  \end{center}
+  \caption{Graphical window for control of high voltage power supplies, opened after entering \texttt{richscal} command at SC5 computer.}
+\label{richscal}
+\end{figure}
+
+% \newpage
+
+\subsection{Notes}
+On some computers, when opening the Slow Controls windows (by Epics) they cause a Segmentation Violation and refuse to open. This issue is caused by the scalable fonts that need to be installed on your computer, in order to open graphical applications at remote hosts.
+You can solve this issue by installing the package \texttt{xfonts-100dpi}, to install it on e.g.\ Debian based systems, just type in the terminal on your computer:
+\begin{verbatim}
+$ sudo apt-get install xfonts-100dpi
+\end{verbatim}
+
+\subsection{Instructions for the BDB reboot}
+\label{bdbreboot}
+
+\begin{enumerate}
+\item Connect or go to \texttt{sc5.starp.bnl.gov} computer.
+\item In a termnial, type \texttt{telnet scserv 9010}, and hit \texttt{[Enter]}.
+\item Hit  \texttt{[Enter]} again.
+\item If upVPD is on, turn it off.
+\item Press \texttt{Ctrl + X} to reboot the processor.
+\item Wait until the processors reboot information comes to the following lines:
+\noindent
+\begin{verbatim}
+ Done executing startup script
+ /home/sysuser/epics3.13.10/Application/iocBoot/iocbbc/stold.cmd
+ bdb> checking system
+\end{verbatim}
+
+\begin{itemize}
+ \item Please note that sometimes you might need to scroll up in case you missed this line appearing in the display.
+ \item During the process the following GUIs will go white: upVPD, BBC LeCroy and ZDC\@. Ignore any messages you see on the Linux screens afterwards. If a GUI remains blank but the reset is complete, try to maximize and restore the GUI to their original size.
+\end{itemize}
+
+\item When the terminal is done updating and all GUIs are back, \textbf{turn on what needs to be on}: BBC HV, ZDC HV, EAST/WEST SMD and PP2PP HV\@. \textbf{Check the required detector state for the current conditions.}
+\item Press \texttt{Ctrl + ]}. This should bring the prompt to \texttt{telnet>}.
+\item Type \texttt{quit} and hit \texttt{[Enter]}.
+\item Make an entry in the shift log when done.
+\end{enumerate}
+
+These instructions are (and should be) also placed in the STAR control room.
+
+\subsection{Instructions for the TCIM reboot}
+Sometimes, the ZDC RICH scalers suddenly change to weird values (like 200k for the ``ZDC and''). This can be caused by a fault in logic on the TCIM board and can be solved by rebooting it.
+To do that, follow these steps:
+
+
+\begin{enumerate}
+\item Type into a terminal somewhere in the STAR network (e.g.\ from the \texttt{stargw} --- see Section~\ref{computers})
+\begin{verbatim}
+ssh tof@tofrnps
+\end{verbatim}
+\item you will be asked for a password (it is in the password sheet)
+\item enter
+\item \verb=/off B4, y=
+\item this turns off the TCIM\@. Wait 20--30 seconds
+\item \verb=/on B4, y=
+\item \verb=/x=
+\end{enumerate}
+

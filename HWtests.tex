@@ -1,0 +1,13 @@
+\chapter{Tests of the hardware before the start of the collisions at RHIC}
+The PMTs' response to cosmics needs to be checked before the run. After you turn the ZDC HV on, you can check the signal with an oscilloscope on the signal output at the patch panels close to the TCIM (See Fig.~\ref{tcimpp}). A good way of doing this is to turn on the the HV on the towers one-by-one so you can see if the output of some ZDC towers is swapped.
+Moreover, the ZDC cables may be swapped with the SMD, disconnected, or faulty. Therefore, if the signal is missing on the patch panel, you should follow the cables to the PMTs and check if all the cables are in the right place. Equally, you should check the HV connection.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.7\textwidth]{img/zdcepatch.jpg}
+\end{center}
+\caption{Outputs from PMTs at patch panel for ZDC east, that needs to be checked.}
+\label{zdcepatch}
+\end{figure}
+
+ZDC west and east sum signals are typically checked on outputs of both TCIM and logic unit. ``ZDC and'' and ``ZDC kill'' signals are controlled on TCIM using  signal from a pulser. The pulser needs to be connected to one of the channels of ZDC East and West simultaneously. Typically, you divide the signal from the pulser and connect it to the ZDC East1 and West1 towers input of the TCIM\@. Now, you should monitor the RICH scalers output GUI on the \texttt{sc5} computer and the TCIM coincidence logic webpage at \url{172.16.15.101/AnalogandCoincidenceLogic13.html}.
