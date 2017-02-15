@@ -69,7 +69,7 @@ Values of RICH Scaler Rates for BBC and ZDC detectors can be displayed with \tex
 
 % \newpage
 
-\subsection{Notes}
+\subsubsection{Notes}
 On some computers, when opening the Slow Controls windows (by Epics) they cause a Segmentation Violation and refuse to open. This issue is caused by the scalable fonts that need to be installed on your computer, in order to open graphical applications at remote hosts.
 You can solve this issue by installing the package \texttt{xfonts-100dpi}, to install it on e.g.\ Debian based systems, just type in the terminal on your computer:
 \begin{verbatim}
@@ -105,6 +105,18 @@ $ sudo apt-get install xfonts-100dpi
 \end{enumerate}
 
 These instructions are (and should be) also placed in the STAR control room.
+
+\subsection{TCIM web control}
+Signal from ZDC PMTs is controlled and processed in TCIM unit. TCIM could be accessed from a website at  \url{172.16.15.101/AnalogandCoincidenceLogic13.html} from \texttt{startrg.starp.bnl.gov}. This website is bookmarked in Firefox installed in this machine and it is shown in Fig.~\ref{tcimweb}. User guide for this website is on this websie, or in Appendix~\ref{TCIMappend}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=\textwidth]{img/tcimweb1.jpg}
+  \end{center}
+  \caption{TCIM web control, accessible at \url{172.16.15.101/AnalogandCoincidenceLogic13.html} in Firefox at \texttt{startrg.starp.bnl.gov}.}
+\label{tcimweb}
+\end{figure}
+
 
 \subsection{Instructions for the TCIM reboot}
 Sometimes, the ZDC RICH scalers suddenly change to weird values (like 200k for the ``ZDC and''). This can be caused by a fault in logic on the TCIM board and can be solved by rebooting it.
