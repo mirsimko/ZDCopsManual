@@ -13,6 +13,7 @@ To gain access all of the important detector control hosts, one needs to add req
    \2 TDC timing of ZDC
  \1 \texttt{sysuser@alh.starp.bnl.gov} 
    \2 old alarm handler for slow controls at STAR
+   \2 currently deprecated
  \1 \texttt{sysuser@alh2.starp.bnl.gov}
    \2 new alarm handler for slow controls at STAR
  \1 \texttt{tof@tofrnps}
@@ -80,31 +81,22 @@ $ sudo apt-get install xfonts-100dpi
 \label{bdbreboot}
 
 \begin{enumerate}
-\item Connect or go to \texttt{sc5.starp.bnl.gov} computer.
+\item Connect or go to \texttt{sc2.starp.bnl.gov} computer.
 \item In a termnial, type \texttt{telnet scserv 9010}, and hit \texttt{[Enter]}.
-\item Hit  \texttt{[Enter]} again.
 \item If upVPD is on, turn it off.
 \item Press \texttt{Ctrl + X} to reboot the processor.
-\item Wait until the processors reboot information comes to the following lines:
-\noindent
-\begin{verbatim}
- Done executing startup script
- /home/sysuser/epics3.13.10/Application/iocBoot/iocbbc/stold.cmd
- bdb> checking system
-\end{verbatim}
-
+\item Wait until the reboot finishes
 \begin{itemize}
  \item Please note that sometimes you might need to scroll up in case you missed this line appearing in the display.
  \item During the process the following GUIs will go white: upVPD, BBC LeCroy and ZDC\@. Ignore any messages you see on the Linux screens afterwards. If a GUI remains blank but the reset is complete, try to maximize and restore the GUI to their original size.
 \end{itemize}
-
 \item When the terminal is done updating and all GUIs are back, \textbf{turn on what needs to be on}: BBC HV, ZDC HV, EAST/WEST SMD and PP2PP HV\@. \textbf{Check the required detector state for the current conditions.}
 \item Press \texttt{Ctrl + ]}. This should bring the prompt to \texttt{telnet>}.
 \item Type \texttt{quit} and hit \texttt{[Enter]}.
 \item Make an entry in the shift log when done.
 \end{enumerate}
 
-These instructions are (and should be) also placed in the STAR control room.
+These instructions are also placed in the STAR control room in the Slow Controls Manual.
 
 \subsection{TCIM web control}
 Signal from ZDC PMTs is controlled and processed in the TCIM unit. The TCIM can be accessed via a website on\\

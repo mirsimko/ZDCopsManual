@@ -1,3 +1,4 @@
+\section{Installation}
 \section{How to use the ZDC code}\hypertarget{how-to-use-the-zdc-code}{}\label{how-to-use-the-zdc-code}
 
 All of the code is located in the folder: \texttt{/direct/star+u/msimko/ZDC}. You can copy the whole folder into
@@ -7,18 +8,17 @@ a copy on Github as well~\cite{ZdcGithubRepo}.
 \subsection{Getting the \texttt{.dat}\ files}\hypertarget{getting-the-dat-files}{}\label{getting-the-dat-files}
 
 First, you must download the \verb=.dat=\ files which are quite big, therefore We recommend saving them on
-the \texttt{gpfs01} disc on RCF (\texttt{/gpfs/mnt/gpfs01/star/pwg}). For the data transfer, We use the script
-\texttt{transfer.cpp} in\\
+the \texttt{gpfs01} disc on RCF (\texttt{/gpfs/mnt/gpfs01/star/pwg}). The \texttt{.dat} files are all stored as a single \texttt{.tar} file For the data transfer, We use the script
+\texttt{transferTarFiles.cpp} in\\
 \texttt{/direct/star+u/msimko/ZDC/data}.\\
 It uses Data Carousel so you won't put much
 pressure on the HPSS (this is good practice). You run it by typing:
 \begin{verbatim}
-$ root -q transfer.cpp
+$ root -q transferTarFiles.cpp
 \end{verbatim}
 In this macro you have to change the variable
 \texttt{runNumber} and where you want to put the files (variables: \texttt{Energy}, \texttt{trgSetup}, 
-and \texttt{Workdir}).
-Importantly, you must also change the number of \verb=.dat=\ files in the run. You can find it here:
+and \texttt{Workdir}). You can find the run to analyze here:
 \url{http://online.star.bnl.gov/RunLog/}~\cite{runLogBrowser}.
 
 Now, you have to wait until your data get transfered. This can take from a couple of minutes up to a few hours.
@@ -26,11 +26,11 @@ You can monitor it here:
 \url{https://www.star.bnl.gov/devcgi/display_accnt.cgi}~\cite{hpss}.
 When they get transfered, running
 \begin{verbatim}
-$ ./ls.sh
+$ ./untarAll.sh
 \end{verbatim}
-in the \texttt{data} folder will create a list of the transfered files.
+in the \texttt{data} will untar all \texttt{.dat} files in the base directory.
 
-\subsection{Making the TTree}\hypertarget{making-the-ttree}{}\label{making-the-ttree}
+\subsection{Running the calibration code}\hypertarget{making-the-ttree}{}\label{making-the-ttree}
 
 The analysis code is located in \texttt{StRoot} inside the base folder. First thing you need to do after you
 copy the code is compiling it using
@@ -44,33 +44,28 @@ directories of the code and the data i.e. \texttt{dirOut}, \texttt{seenRuns}, an
 The \texttt{seenRuns} file has to
 exist so you want to create one by typing:
 \begin{verbatim}
-$ touch seenRuns/seenRuns_run16.msimko.txt
+$ touch seenRuns/seenRuns_run19.msimko.txt
 \end{verbatim}
 If you want to use the code
 on the same run multiple times (e.g.\ you screw up the first time), you have to delete the run number in
-this file. You don't have to worry
-about the rest.
+this file. After making the \texttt{seenRuns} list, you should create the \texttt{unseenRuns} list. For this, you  can run the convenient macro
+\begin{verbatim}
+$ ./makeUnseenList.sh
+\end{verbatim}
+which looks at the data directory and the \texttt{seenRuns} list and automatically creates a list of unseen runs.
 
 You can run the code by typing:
 \begin{verbatim}
-$ starver dev
-$ root4star -b -q ./read.C'("config.C")'
+$ ./readRunList.sh
 \end{verbatim}
-or you can simply use the macro prepared for this:
-\begin{verbatim}
-$ ./read
-\end{verbatim}
-This will run the BFC chain (it can take a few minutes so this is a good time to have a coffee). When it is finished
+This will run the BFC chain. When it is finished
 in your \texttt{dirOut}, you will get lots of pdfs and pngs with histograms and, most importantly, a root file in
 \texttt{dirOut/histo/someFileWithRunNumber.root}. Note that all of the histograms are also saved here.
+The TTree, stores the ADC readout value of ZDC modules, tof-multi,
+TDC values (timing), and other trigger information as well.
+The \texttt{readRunList.sh} then automatically runs the calibration code which generates useful plots for the ZDC calibration and ratios between the gains of the towers. 
 
-\subsection{ZDC calibration code}\hypertarget{zdc-calibration-code}{}\label{zdc-calibration-code}
-
-
-
-The TTree, you created in the previous step, stores the ADC readout value of ZDC modules, tof-multi, and
-TDC values (timing) as well. 
-So the next step of ZDC calibration
+The next step of ZDC calibration
 should be to read the information and plot figures.
 We use some cuts in the code to extract the signal of the single neutron. In 2016, we used these cuts:
 
@@ -94,11 +89,10 @@ the ZDC HV as described e.g.\ in the Chapter~\ref{calibration}.
 
 \subsection{Creating an html page for monitoring}\hypertarget{creating-html-page-for-monitoring}{}\label{creating-html-page-for-monitoring}
 
-You can also create a web page out of the results. All you have to do is running
+The \texttt{runRunList.sh} macro also creates several html files. By running
 \begin{verbatim}
-$ root -l -q html_maker.cpp
+$ ./moveToWww.sh
 \end{verbatim}
-after you change variables \texttt{RunNumber}, \texttt{trgSetup}, \texttt{typeEnergy}, 
-and \texttt{root\_file\_path} in the\\
-\texttt{html\_maker.cpp} file.
+you can move all the html files, together with all the plots and publish it.
 
+\section{At the start of each run}
